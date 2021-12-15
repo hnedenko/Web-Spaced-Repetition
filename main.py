@@ -1,16 +1,24 @@
-from flask import Flask
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
 
 @app.route('/')
+@app.route('/home')
+@app.route('/main')
+@app.route('/index')
 def index():
-    return "Hello, my dear world!"
+    return render_template("index.html")
 
 
 @app.route('/about')
 def about():
-    return "It`s better app to interval repetition!"
+    return render_template("about.html")
+
+
+@app.route('/user/<string:name>/<int:id>')
+def user(name, id):
+    return "User page: " + str(name) + " ID: " + str(id)
 
 
 if __name__ == "__main__":
